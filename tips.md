@@ -17,7 +17,7 @@ flash和js通过什么类如何交互?ExternalInterface
 - - - 
 面有关浏览器中使用js跨域获取数据的描述，说法正确的有：
 - js可以使用jsonp进行跨域
-- 通过修改document.domain来跨子域
+- 通过iframe设置document.domain可以实现跨域
 - 使用window.name来进行跨域
 
 - - -
