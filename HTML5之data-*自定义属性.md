@@ -13,3 +13,22 @@
 
 其中的`data-age`就是一种自定义属性，当然我们也可以通过JavaScript来对其进行操作，HTML5中元素都会有一个`dataset`的属性，这是一个
 `DOMStringMap`类型的键值对集合。
+
+    var test = document.getElementById('test');
+        test.dataset.name = 'winter';
+        
+这样就为div添加了一个`data-my`的自定义属性，使用JavaScript操作`dataset`有两个需要注意的地方
+
+- 1. 我们在添加或读取属性的时候需要去掉前缀`data-*`，像上面的例子我们没有使用`test.dataset.data-name = 'winter'`;的形式。
+- 2. 如果属性名称中还包含连字符(-)，需要转成驼峰命名方式，但如果在CSS中使用选择器，我们需要使用连字符格式。
+
+        <style type="text/css">
+            [data-birth-date]
+            {
+                background-color: #0f0;
+                width:100px;
+                margin:20px;
+            }
+        </style>
+
+        test.dataset.birthDate = '19920225';
