@@ -22,13 +22,43 @@
 - 1. 我们在添加或读取属性的时候需要去掉前缀`data-*`，像上面的例子我们没有使用`test.dataset.data-name = 'winter'`;的形式。
 - 2. 如果属性名称中还包含连字符(-)，需要转成驼峰命名方式，但如果在CSS中使用选择器，我们需要使用连字符格式。
 
-        <style type="text/css">
             [data-birth-date]
             {
                 background-color: #0f0;
                 width:100px;
                 margin:20px;
             }
-        </style>
 
-        test.dataset.birthDate = '19920225';
+            test.dataset.birthDate = '19920225';
+            
+这样我们通过JavaScript设置了`data-birth-date`自定义属性，在CSS样式表为div添加了一些样式。
+
+- - -
+读取的时候也是通过dataset对象，使用` . `来获取属性，同样需要去掉`data-`前缀，连字符需要转化为驼峰命名:
+
+    alert(this.dataset.name + ' ' +this.dataset.birthDate);
+    
+- - - 
+### getAttribute/setAttribute
+dataset 和getAttribute/setAttribute之间的区别：
+
+    test.dataset.birthDate = '19890615';
+    test.dataset.age = '24';
+    test.setAttribute('age', 25);
+    test.setAttribute('data-sex', 'male');
+
+    console.log(test.getAttribute('data-age')); //24
+    console.log(test.getAttribute('data-birth-date')); //19890516
+    console.log(test.dataset.age); //24
+    console.log(test.age); //25
+    console.log(test.dataset.sex); //male
+
+两者都把属性设置到了attribute上，也就是说`getAttribute/setAttribute`可以操作所有的`dataset`内容，`dataset`内容只是`attribute`的一个
+子集，特殊就特殊在命名上了，但是`dataset`内只有带有`data-`前缀的属性（没有age=25那个）。
+
+- - -
+那么为什么我们还要用`data-*`呢，一个最大的好处是我们可以把所有自定义属性在`dataset`对象中统一管理,而不至于零零散散了。
+
+### 兼容性
+别的不多提，IE已经亮瞎我的眼：
+# *Internet Explorer 11+*
