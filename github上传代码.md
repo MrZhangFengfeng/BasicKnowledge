@@ -1,4 +1,5 @@
 ## github上传代码
+- git pull
 
 - git status，看git是否获取到文件的更改
 
