@@ -19,3 +19,6 @@
 > 注意： 如果过渡在完成前移除，例如 CSS `transition-property` 属性被移除，过渡事件将不被触发。
 
 - - -
+### if()
+    if(0){...} //false
+    if(''){...} //false
