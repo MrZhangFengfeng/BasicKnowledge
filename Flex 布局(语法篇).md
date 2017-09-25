@@ -1,3 +1,6 @@
+> 首先感谢阮一峰老师，本文是阅读阮一峰老师的文章来学习的。
+- - -
+
 ## 行内元素也可以使用 Flex 布局
 
 > Webkit 内核的浏览器，必须加上-webkit前缀。
@@ -64,4 +67,60 @@
 ![align-content属性](img/align-content属性.png)
 
 - - -
+# 项目的属性
+以下6个属性设置在项目上
 
+- order：定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+
+        .item {
+          order: <integer>;
+        }
+    
+![order属性](img/order属性.png)
+
+- flex-grow：定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+
+        .item {
+          flex-grow: <number>; /* default 0 */
+        }
+
+![flex-grow属性](img/flex-grow属性.png)
+如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1
+，则前者占据的剩余空间将比其他项多一倍。
+
+- flex-shrink：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+
+        .item {
+          flex-shrink: <number>; /* default 1 */
+        }
+        
+![flex-shrink属性](img/flex-shrink属性.png)
+
+- flex-basis：定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余
+空间。它的默认值为auto，即项目的本来大小。
+
+    .item {
+      flex-basis: <length> | auto; /* default auto */
+    }
+
+它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。
+- flex：属性是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写，默认值为`0 1 auto`。后两个属性可选
+
+        .item {
+          flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+        }
+ 
+该属性有两个快捷值：`auto (1 1 auto)` 和 `none (0 0 auto)`。
+
+建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+
+- align-self：允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承
+父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
+
+    .item {
+      align-self: auto | flex-start | flex-end | center | baseline | stretch;
+    }
+
+![align-self属性](img/align-self属性.png)
+
+该属性可能取6个值，除了auto，其他都与align-items属性完全一致。
