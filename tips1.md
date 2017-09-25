@@ -45,6 +45,12 @@
 - `image`	定义图像形式的提交按钮。
 - `reset`	定义重置按钮。重置按钮会清除表单中的所有数据。
 
+- - -
+## webpack打包问题
+`import` `node modules`里的组件或在方法，在`npm run  build` 的时候会一起打包到最终的common.js里吗？
+
+**会**。
+- - - 
 
 
 
