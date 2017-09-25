@@ -25,7 +25,7 @@
 主轴的开始位置（与边框的交叉点）叫做`main start`，结束位置叫做`main end`；交叉轴的开始位置叫做`cross start`，结束位置叫做`cross end`。
 项目默认沿主轴排列。单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做`cross size`。
 
-![flex基本概念](imgs/flex基本概念.png)
+![flex基本概念](img/flex基本概念.png)
 
 - - -
 ## 容器的属性
@@ -94,7 +94,7 @@
           flex-shrink: <number>; /* default 1 */
         }
         
-![flex-shrink属性](img/flex-shrink属性.png)
+![flex-shrink属性](img/flex-shrink属性.jpg)
 
 - flex-basis：定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余
 空间。它的默认值为auto，即项目的本来大小。
