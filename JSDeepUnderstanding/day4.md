@@ -47,3 +47,29 @@
 
     'use strict';//如果不兼容严格模式，这句话就会被直接忽略
     function fn(){ ...}
+
+严格模式下禁止：
+
+- 未声明的变量被赋值，将会报错。而不是像非严格模式一样生成一个全局变量。
+- arguments变为参数的静态副本。像下面的这个arguments，不管传没传a，都不会修改a，打出来的都会是1.
+- 但是这样对arguments是有影响的：
+
+        !function(a){
+            'use strict';
+            arguments[0].x = 100;
+            console.log(a.x) //100
+        }
+- - -
+## arguments
+
+    !function(a){
+        arguments[0] = 100;
+        console.log(a)
+    }
+
+如果传入了a，那么会被修改。但是如果没有传a，那么即使arguments[0] = 100;打出来的仍然是`undefined`
+
+- - -
+## 重复定义
+    let obj = {x:1,x:2}
+    console.log(obj.x)//2
