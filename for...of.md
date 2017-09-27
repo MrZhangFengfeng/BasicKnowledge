@@ -96,3 +96,32 @@
     // 3
 
 - - -
+## 迭代 DOM 集合
+迭代 DOM 元素集合,比如一个NodeList对象：
+> 注意：这只能在实现了NodeList.prototype [Symbol.iterator]的平台上运行
+
+    let articleParagraphs = document.querySelectorAll("article > p");
+
+    for (let paragraph of articleParagraphs) {
+      paragraph.classList.add("read");
+    }
+
+- - -
+## 关闭迭代器
+对于`for...of` 的循环，突然的迭代终止可以由`break`，`continue`，`throw`或`return`引起。在这些情况下，迭代器关闭。
+
+    function* foo(){ 
+      yield 1; 
+      yield 2; 
+      yield 3; 
+    }; 
+
+    for (let o of foo()) { 
+      console.log(o); 
+      break; // closes iterator, triggers return
+    }
+    // 1
+
+**function后面要加`*`,否则报错**
+
+- - -
