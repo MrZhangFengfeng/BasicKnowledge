@@ -64,3 +64,54 @@ Map 的键实际上是跟内存地址绑定的，只要内存地址不一样，�
     map.get(+0) // 123
 
 - - -
+实例的属性和操作方法
+
+Map 结构的实例有以下属性和操作方法。
+
+- size：返回成员总数。
+- set(key, value)：设置 key 所对应的键值，然后返回整个 Map 结构。如果 key 已经有值，则键值会被更新，否则就新生成该键。
+- get(key)：读取 key 对应的键值，如果找不到 key，返回 undefined。
+- has(key)：返回一个布尔值，表示某个键是否在 Map 数据结构中。
+- delete(key)：删除某个键，返回 true。如果删除失败，返回 false。
+- clear()：清除所有成员，没有返回值。
+
+set()方法返回的是 Map 本身，因此可以采用链式写法。
+
+    let map = new Map()
+      .set(1, 'a')
+      .set(2, 'b')
+      .set(3, 'c');
+      
+- - -
+## 遍历方法
+
+Map 原生提供三个遍历器。
+
+- keys()：返回键名的遍历器。
+- values()：返回键值的遍历器。
+- entries()：返回所有成员的遍历器。
+
+        for (let key of map.keys()) {
+          console.log(key);
+        }
+
+        for (let value of map.values()) {
+          console.log(value);
+        }
+
+        for (let item of map.entries()) {
+          console.log(item[0], item[1]);
+        }
+
+- - -
+### Map 结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）。
+    let map = new Map([
+      [1, 'one'],
+      [2, 'two'],
+      [3, 'three'],
+    ]);
+
+    [...map]
+    // [[1,'one'], [2, 'two'], [3, 'three']]
+
+- - -
