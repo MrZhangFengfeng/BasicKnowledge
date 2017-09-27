@@ -125,3 +125,30 @@
 **function后面要加`*`,否则报错**
 
 - - -
+# for...of与for...in的区别
+
+- for...in循环会遍历一个object所有的可枚举属性。
+
+- for...of语法是为各种collection对象专门定制的，并不适用于所有的object.它会以这种方式迭代出任何拥有[Symbol.iterator] 属性
+的collection对象的每个元素。
+
+下面的例子演示了for...of 循环和 for...in 循环的区别。for...in 遍历（当前对象及其原型上的）每一个属性名称,
+而 for...of遍历（当前对象上的）每一个属性值:
+
+    Object.prototype.objCustom = function () {}; 
+    Array.prototype.arrCustom = function () {};
+
+    let iterable = [3, 5, 7];
+    iterable.foo = "hello";
+
+    for (let i in iterable) {
+      console.log(i); 
+      // logs 0, 1, 2, "foo", "arrCustom", "objCustom"
+    }
+
+    for (let i of iterable) {
+      console.log(i); // logs 3, 5, 7
+    }
+
+- - -
+# OVER
