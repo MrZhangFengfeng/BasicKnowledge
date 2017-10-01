@@ -5,6 +5,6 @@
 
 - git add --all,将所有文件都添加到仓库中
 
-- git commmit -m "注释语句"
+- git commit -m "注释语句"
 
 - git push(git push -u origin master)
