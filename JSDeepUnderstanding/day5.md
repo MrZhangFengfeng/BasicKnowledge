@@ -50,5 +50,12 @@ toString 等原型链上的属性是不可被枚举的。
     console.log(man.age) //25
     man.age = 100; //是方法，会输出"age:100"
 
+- - -
+如果val是number，那么就相当于什么也不做。如果不是number，那么就尝试转换成number
+
+        val = +val
+    
+如果val ='abc' , val=+val会得到NaN
+- - -
 
 
