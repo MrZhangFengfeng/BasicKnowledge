@@ -58,6 +58,7 @@ toString 等原型链上的属性是不可被枚举的。
 如果val ='abc' , val=+val会得到NaN
 - - -
 ## get/set 方法与原型链
-![get/set 方法与原型链](img/get-set方法与原型链1.jpg)
-![get/set 方法与原型链](img/get-set方法与原型链2.jpg)
+![get-set方法与原型链](img/get-set方法与原型链1.jpg)
+
+![get-set方法与原型链](img/get-set方法与原型链2.jpg)
 
