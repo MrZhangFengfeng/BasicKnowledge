@@ -35,6 +35,10 @@
       value: 'winter'
     });
 
+    Object.defineProperty(person,{
+        name:{...},
+        age:{...}
+    }});
 - - -
 ## .keys
 example:
