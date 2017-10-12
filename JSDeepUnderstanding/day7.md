@@ -21,4 +21,12 @@
       seal 和 freeze都不会影响原型链。
       
 - - -
+## 序列化
+      let obj = {x: 1,y: true};
+      JSON.stringify(obj); //"{'x': 1,'y': true}";
 
+      let obj = {val: undefined,x: NaN, y: Infinity,z: new Date()};
+      JSON.stringify(obj); //"{'x':null,'y':null,'z':'2017-10-12T15:12:26.852Z'}"   val直接不显示了
+
+      obj = JSON.parse("{'x': 1,'y': true}");
+      obj.x; //1
