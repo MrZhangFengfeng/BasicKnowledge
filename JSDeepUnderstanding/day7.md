@@ -30,3 +30,19 @@
 
       obj = JSON.parse("{'x': 1,'y': true}");
       obj.x; //1
+
+- - -
+## 序列化-自定义
+      let obj = {
+            x: 1,
+            o: {
+                  a: 1,
+                  b: 2,
+                  toJSON: function() {
+                        return this.a + this.b;
+                  }
+            }
+      }
+      JSON.stringify(obj); // "{'x':1,'o':3}"
+
+> 注意： toJSON 方法名是固定的 不可变的。
