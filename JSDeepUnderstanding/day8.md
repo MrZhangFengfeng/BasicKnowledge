@@ -39,3 +39,40 @@
     console.log(99 in arr1)
 
 - - -
+## 数组的方法
+
+    arr.sort() //不会改变原数组
+
+    let arr = [1,2,3]
+    arr.concat(4,5) //[1,2,3,4,5]
+    arr.concat([6,7],9) //[1,2,3,6,7,9]
+    arr; //[1,2,3]   //不会改变原数组
+
+    arr.splice()  //删除掉数组中的某些元素，改变原数组。返回值是被删除的元素的集合！
+
+    arr.forEach(function(item,index,obj){...});  //obj 指向arr
+    arr === obj // true
+
+    arr.map(function(item){return item+10})// 返回新数组，不改变原数组
+    
+    arr.filter(function(item,index){
+        return item >6 || index %2 ==0;
+    })
+- - -
+##  every and some
+    let arr = [1,2,3,4,5];
+    arr.every(function(item){return item < 10})  //true
+    arr.every(function(item){return item < 3})  //false
+
+    arr.some(function(item){return item < 10})  //true
+    arr.some(function(item){return item < 3})  //true
+
+- - -
+
+
+
+
+
+
+
+
