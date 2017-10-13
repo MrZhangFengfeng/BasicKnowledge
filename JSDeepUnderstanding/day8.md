@@ -58,6 +58,8 @@
     arr.filter(function(item,index){
         return item >6 || index %2 ==0;
     })
+    
+    arr.indexOf(searchvalue,fromindex)
 - - -
 ##  every and some
     let arr = [1,2,3,4,5];
@@ -85,6 +87,12 @@
     max; //3
 
 `reduce` 和 `reduceRight`的区别:  `reduceRight` 是从数组的右侧开始向左进行操作。
+
+- - -
+## 判断是否为数组
+    Array.isArray([]); //true
+    [] instanceof Array; //true
+    [].constructor === Array;  //true
 
 - - -
 
