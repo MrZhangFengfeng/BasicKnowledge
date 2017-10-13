@@ -1,7 +1,7 @@
 ## 对象属性
 
 - [[proto]]
-- [[class]]
+- [[class]] //指的是对象类型。数字，字符串，布尔值
 - [[extensible]]
 
       let obj = {x: 1,y :2};
