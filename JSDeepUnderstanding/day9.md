@@ -83,4 +83,15 @@
     fn1(6); //100+200+6=306;
 
 - - -
-## bind 和 new
+## bind 和 new(有待研究)
+    
+    function foo() {
+        this.b = 100;
+        return this.a;
+    }
+    
+    let func = foo.bind({a:1});
+    func(); //1
+    new func(); //{b: 100}
+    
+- - -
