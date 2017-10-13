@@ -68,8 +68,25 @@
     arr.some(function(item){return item < 3})  //true
 
 - - -
+## reduce
+    let arr = [1,2,3];
+    let sum = arr.reduce(function(x,y){
+        return x + y;
+    }) 
+    sum; //6
+    arr; //[1,2,3]
+    
+求最大值
 
+    let arr = [1,2,3];
+    let max = arr.reduce(function(x,y){
+        return x > y ? x : y;
+    }) 
+    max; //3
 
+`reduce` 和 `reduceRight`的区别:  `reduceRight` 是从数组的右侧开始向左进行操作。
+
+- - -
 
 
 
