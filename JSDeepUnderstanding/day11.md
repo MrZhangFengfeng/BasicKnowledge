@@ -40,7 +40,7 @@
 ## 再注意，不是所有的对象`prototype`这个属性
 例如：
 
-    function abd() {...}
+    function abc() {...}
     abc.prototype; //Object {}
 
     let abcBinded = abc.bind(null);
