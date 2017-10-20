@@ -166,8 +166,110 @@ jsonp正是利用这个特性来实现的。
 - - -
 ## 使用window.name来进行跨域
 
+window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。
 
+比如：有一个页面a.html,它里面有这样的代码：
 
+    <script>
+        window.name = "winter at A.html";
+        setTimeout(function(){
+            window.location = "b.html"
+        }，3000)
+    </script>
+
+b.html的代码为：
+
+    <script>
+        alert(window.name);  
+    </script>
+
+3秒后在同一个窗口内跳入另一个页面，结果为 “winter at A.html”。
+
+> 注：往后的任何一个页面都可以对window.name的值进行修改。
+> 注: `window.name`的值只能是字符串的形式，这个字符串的大小最大能允许 2M 左右甚至更大的一个容量，具体取决于不同的浏览器，但一般是够用了。
+
+上面的例子中，我们用到的页面a.html和b.html是处于同一个域的，但是即使a.html与b.html处于不同的域中，上述结论同样是适用的，
+这也正是利用window.name进行跨域的原理。
+
+下面就来看一看具体是怎么样通过window.name来跨域获取数据的。还是举例说明。
+比如有一个`www.example.com/a.html`页面,需要通过`a.html`页面里的js来获取另一个位于不同域上的页面`www.cnblogs.com/data.html`里的数据。
+
+data.html页面里的代码很简单，就是给当前的window.name设置一个a.html页面想要得到的数据值。data.html里的代码：
+
+    <script>
+        window.name = "我是a页面想要的数据，所有可以转为字符串的数据都可以在这里使用";
+    </script>
+
+那么在a.html页面中，我们怎么把data.html页面载入进来呢？
+显然我们不能直接在a.html页面中通过改变window.location来载入data.html页面，因为我们想要即使a.html页面不跳转也能得到data.html里的数据。
+
+答案：就是在a.html页面中使用一个隐藏的iframe来充当一个中间人角色，由iframe去获取data.html的数据，然后a.html再去得到iframe获取到的数据。
+
+充当中间人的iframe想要获取到data.html的通过window.name设置的数据，只需要把这个iframe的src设为`www.cnblogs.com/data.html`就行了。然后a.html想要得到iframe所获取到的数据，也就是想要得到iframe的window.name的值，还必须把这个iframe的src设成跟a.html页面同一个域才行，不然根据前面讲的同源策略，a.html是不能访问到iframe里的window.name属性的。这就是整个跨域过程。
+
+看下a.html页面的代码：
+
+    <!doctype html>
+    <head>
+        <title>使用window.name来进行跨域</title>
+        <script>
+            function getData(){//iframe载入data.html后会执行此函数
+                var iframe = document.getElementById('demoIframe');
+                iframe.onload = function(){ // 此时a.html和iframe已经同源了，可以互相访问
+                    var data = iframe.contentWindow.name; // 获取到data.html页面设置的数据
+                    console.log(data)
+                }  
+                //这的b.html是随意的一个页面，只要与a.html同源就行，目的是让a.html能访问到iframe里面的东西，设置为 about:blank 也行
+                iframe.src = 'b.html';
+            }
+        </script>
+    </head>
+    <body>
+        <iframe id="demoIframe" src= "www.cnblogs.com/data.html" onload="getData()" style="display:none"></iframe>
+    </body>
+    </html>
+
+- - -
+
+## 使用HTML5中新引进的window.postMessage方法来跨域传送数据
+`window.postMessage(message,targetOrigin)` 方法是html5新引进的特性，可以使用它来向其它的window对象发送消息。
+无论这个window对象是属于同源或不同源，目前IE8+、FireFox、Chrome、Opera等浏览器都已经支持window.postMessage方法。
+
+调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；
+第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。
+
+需要接收消息的window对象，可以通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。
+
+上面所说的向其他window对象发送消息，其实就是指一个页面有几个框架的那种情况，因为每一个框架都有一个window对象。
+在讨论 `通过修改document.domain来跨子域` 方法的时候，我们说过，不同域的框架间是可以获取到对方的window对象的，而且也可以使用window.postMessage这个方法。
+下面看一个简单的示例，有两个页面：
+
+a.html的代码
+
+    <script>
+        function onload(){
+            var iframe = document.getElementById('iframe');
+            var win = iframe.contentWindow;
+            window.postMessage('我是你要的数据哦', '*');
+        }
+    </script>
+    <iframe id="iframe" src= "www.test.com/b.html" onload="onload()"></iframe>
+
+b.html的代码
+
+    <script>
+        window.onmessage = function(e) { //注册onmessage事件来接收消息
+        e = e || event; //获取事件对象
+        alert(e.data);  //获得数据
+        }
+    </script>
+
+运行a.html后就会弹出 `我是你要的数据哦`。
+
+> window.postMessage() 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为https），端口号（443为https的默认值），以及主机  (两个页面的模数 Document.domain设置为相同的值) 时，这两个脚本才能相互通信。window.postMessage() 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。
+
+- - -
+# OVER
 
 
 
