@@ -45,7 +45,21 @@
 
 - - -
 ## this 的用法
-- 作为构造函数使用(`this.name = name`)
+- 作为构造函数使用
+
+      function Foo(name) {
+            this.name = name;
+      }
+      
+实际上是这样的：
+
+      function Foo(name) {
+            this = {};
+            this.name = name;
+            return this;
+      }
+
+
 - 作为对象属性执行(`a.fn()`)
 - 作为普通函数执行(`var fn1 = a.fn`)
 - call  apply  bind
