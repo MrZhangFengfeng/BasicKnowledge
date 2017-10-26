@@ -21,6 +21,7 @@
         Elem.prototype.on = function(type,fn) {
                 var elem = this.elem;
                 elem.addEventListener(type,fn);
+                return this;
         }
         var div1 = new Elem('div1')
         div1.html('winter').on('click',function() {
