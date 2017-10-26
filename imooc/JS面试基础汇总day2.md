@@ -18,6 +18,19 @@
 - Error
 - Math(这个是对象，不是函数)
 
+在控制台输出后得到：
+
+        Number
+        ƒ Number() { [native code] }
+        Array
+        ƒ Array() { [native code] }        
+        Function
+        ƒ Function() { [native code] }
+        Math
+        Math {abs: ƒ, acos: ƒ, acosh: ƒ, asin: ƒ, asinh: ƒ, …}
+        JSON
+        JSON {Symbol(Symbol.toStringTag): "JSON", parse: ƒ, stringify: ƒ}
+        
 - - -
 ## 如何理解JSON
 JSON不仅是一种键值对的数据格式，而且还是一个JS对象。
