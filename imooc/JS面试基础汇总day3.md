@@ -4,16 +4,29 @@
 
         答案： obj instanceof Array
         
-- 写一个原型链继承的例子
+- 写一个原型链继承的例子(一个封装DOM查询的例子)
 
-        function Animal() {
-                this.eat = function() {...}
+        function Elem(id) {
+                this.elem = document.getElementById(id)
         }
-        function Dog() {
-                this.bark = function() {...}
+        Elem.prototype.html = function(val) {
+                var elem = this.elem;
+                if(val) {
+                        elem.innerHTML = val;
+                        return this;//为了链式操作
+                }else {
+                        return elem.innerHTML;
+                }
         }
-        Dog.prototype = new Animal();
-        var dog1 = new Dog();
+        Elem.prototype.on = function(type,fn) {
+                var elem = this.elem;
+                elem.addEventListener(type,fn);
+        }
+        var div1 = new Elem('div1')
+        div1.html('winter').on('click',function() {
+                alert('summer')
+        }).html(...).on(...)
+        
 
 
 - 描述new一个对象的过程
@@ -33,9 +46,6 @@
             //return this;  默认有这一行
         }
         var f = new Foo('winter',20);
-
-
-- zepto(或者其他源码)中如何使用原型链
 
 - - -
 ## 原型链知识点
