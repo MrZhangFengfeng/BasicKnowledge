@@ -24,7 +24,14 @@
 
 - 构造函数--扩展
 
-
+        var a = {}; 其实是var a = new Object()的语法糖。
+        var b = []; 其实是var b = new Array()的语法糖。
+        function C(){...}; 其实是var C = new Function()的语法糖。
+        
+        a的构造函数是  Object()
+        b的构造函数是  Array()
+        C的构造函数是  Function()
+        
 - 原型规则和示例
 
 
@@ -32,7 +39,7 @@
 
 
 - instanceof
-
+使用instanceof来判断一个 函数 是否是一个 对象 的构造函数
 
 - - -
 ## 杂七杂八
