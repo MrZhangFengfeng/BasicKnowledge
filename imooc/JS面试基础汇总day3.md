@@ -60,6 +60,13 @@
 - - -
 ## 杂七杂八
 - JS自定义函数中默认返回 undefined
+- 高级浏览器已经在for in 中屏蔽了来自原型的属性。但是为了保证程序的健壮性，还是建议加上这个判断：
+
+        for(item in obj){
+                if(obj.hasOwnProperty(item)){
+                        ...
+                }
+        }
 
 - - -
 
