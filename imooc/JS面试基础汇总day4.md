@@ -63,6 +63,21 @@
 - 作为对象属性执行(`a.fn()`)
 - 作为普通函数执行(`var fn1 = a.fn`)
 - call  apply  bind
+
+      function fn1(name,age) {
+            alert(name,age);
+            console.log(this);
+      }
+      fn1.call({o:'summer'},'winter',24);  //this === {o:'summer'}
+      fn1.apply({o:'summer'},['winter',24]);   //this === {o:'summer'}
+
+      var fn2 = function (name,age) {
+            alert(name,age);
+            console.log(this);
+      }.bind({o:'summer'})
+      fn2('winter',24)
+
+> 只有函数表达式可以bind(),如果是函数声明是不可以的。
 - - -
 ## JS是解释性语言
 如果一个函数内定义有错误，不会报错。只有在函数执行的时候才会报错，这就是因为JS是解释型  语言，而不是编译型语言
