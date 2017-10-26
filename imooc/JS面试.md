@@ -25,14 +25,14 @@
 ## 变量类型
 - 值类型VS引用类型
 
-值类型：
+值类型(a,b存储在不同位置,Number,String,Boolean,Null,Undefined)：
 
     let a = 100;
     let b = a;
     a = 200;
     console.log(b) //100
     
-引用类型：
+引用类型(对象，数组和函数)：
 
     var a = {age: 24};
     var b = a;
