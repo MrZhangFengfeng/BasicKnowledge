@@ -39,7 +39,13 @@
 
 
 - instanceof
-使用instanceof来判断一个 函数 是否是一个 对象 的构造函数
+使用instanceof来判断一个 函数 是否是一个 对象 的构造函数。
+
+这里的逻辑是什么？
+
+首先f的`_proto_`一层一层往上找，能否对应到Foo的`prototype`。
+
+再试着判断 f instanceof Object,因为Foo的上一层是Object。
 
 - - -
 ## 原型规则
