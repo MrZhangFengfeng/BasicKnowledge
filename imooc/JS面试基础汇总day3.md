@@ -5,7 +5,36 @@
         答案： obj instanceof Array
         
 - 写一个原型链继承的例子
+
+        function Animal() {
+                this.eat = function() {...}
+        }
+        function Dog() {
+                this.bark = function() {...}
+        }
+        Dog.prototype = new Animal();
+        var dog1 = new Dog();
+
+
 - 描述new一个对象的过程
+
+1、创建一个新对象。
+
+2、this指向这个新对象
+
+3、 执行代码，即对this进行赋值
+
+4、返回this
+
+        function Foo(name,age){
+            this.name = name;
+            this.age = age;
+            this.class = 'class-1';
+            //return this;  默认有这一行
+        }
+        var f = new Foo('winter',20);
+
+
 - zepto(或者其他源码)中如何使用原型链
 
 - - -
