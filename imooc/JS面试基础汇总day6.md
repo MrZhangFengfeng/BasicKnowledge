@@ -50,11 +50,14 @@
          }
       }
 
-> 使用(先定义一个大的函数将_list包起来，然后返回函数，将作用域保存在定义的地方)
-      
+> 使用(先定义一个大的函数将`_list`包起来，然后返回函数，将作用域保存在定义的地方)
+
+> 这里` _list` 是自由变量
+
+      
       var firstLoad = isFirstLoad();
       firstLoad(10);  //true
       firstLoad(10);  //false
       firstLoad(20);  //true
-      
-      
+ 
+ > 好处： 不会被人在外部随意修改` _list` 的值
