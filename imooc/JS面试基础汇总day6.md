@@ -12,10 +12,11 @@
       call apply bind
       
 - 创建10个a标签，点击的时候弹出对应的序号
+> 还是看点击的时候i是自由变量，向上寻找，当时定义的时候上级i就是当时循环的i。
 
       var i;
       for(i = 0;i<10;i++) {
-        function(i) {
+        (function(i) {
           a = document.createElement('a');
           a.innerHTML = i + '<br>';
           a.addEventListener('click',function(e) {
@@ -23,7 +24,7 @@
             alert(i)
           })
           document.body.appendChild(a);
-        }(i)       
+        })(i)       
       }
       
       
