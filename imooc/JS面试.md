@@ -1,7 +1,10 @@
 ## 先来几道面试题
 - JS中typeof能得到哪几种类型？
     - 考点：JS变量类型
-    
+    - 答案：string,number,boolean,undefined,object,function,(注意:null 也是object)
+    - typeof只能区分值类型的数据类型，遇到引用类型的就失效了
+    - 对于引用类型，typeof只能明确查出function，其余都是得到object
+    
 - 何时使用`===`？何时使用`==`？
     - 考点：强制类型转换
     
@@ -39,4 +42,39 @@
     b.age = 18;
     console.log(a.age); //18
     
-- typeof运算符详解
+- - - 
+## 变量计算--强制类型转换
+- 字符串拼接
+
+- `==` 运算符
+    - 100 == '100'  //true,100==> '100'
+    - 0 == ''   //true  ,  0,'' ==> false
+    - null == undefined  //true  ,  null,undefined ==> false
+
+- 逻辑运算
+
+        console.log( 10 && 0 ); //0
+        console.log( '' || 'abc'); //'abc'
+        console.log( !window.abc ); //true
+
+判断一个变量会被当做true还是false：
+
+        var a = 100;
+        var b;
+        console.log(!!a)  //true
+        console.log(!!b)  //false
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
