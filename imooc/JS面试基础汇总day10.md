@@ -40,3 +40,22 @@
 服务器端设置 http header
 
 - - -
+## cookie
+- 本身是用来客户端和服务器端通信的
+- 但是又存储功能，所以就被借用了
+- 获取`document.cookie`
+- cookie就是一个字符串，用起来十分不方便
+
+- - -
+## localStorage
+在IOS safari 的影藏模式下，`localStorage.getItem`会报错，所以建议加上`try-catch`封装一下
+
+
+
+
+
+
+
+
+
+
