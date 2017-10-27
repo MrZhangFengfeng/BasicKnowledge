@@ -71,8 +71,10 @@
       var div1  = document.getElementById('#div1');
       bindEvent(div1,'click',function(e){...})
 
-
-
+- - -
+## 使用事件代理的好处
+- 代码简介
+- 减少浏览器内存消耗
 
 
 
