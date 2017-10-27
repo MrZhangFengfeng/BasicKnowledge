@@ -48,16 +48,23 @@ DOM标签可以随意些，只要符合标签规则
 - 替换节点：`replaceChild`;（先找到要替换的节点的父节点，用父节点替换）；
 
 - - -
-## 
+## BOM问题
+- 如何检测浏览器类型
+- 拆解URL各部分
 
+- - -
+### navigator &&  screen
 
+      //userAgent 属性是一个只读的字符串，声明了浏览器用于 HTTP 请求的用户代理头的值。
+      var ua = navigator.userAgent;
+      var isChrome = ua.indexOf('Chrome')
+      
+      console.log(screen.width , screen.height)
 
-
-
-
-
-
-
-
+### history && location
+      history.back();
+      history.forword();
+      
+- - -
 
 
