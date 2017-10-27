@@ -39,6 +39,46 @@
     - demo: 如上给body绑定事件
 
 - - -
+## 完善通用事件绑定的函数(是否使用事件代理)
+
+      function bindEvent(elem,type,selector,fn) {
+        if(fn == null) {
+            fn = selector;
+            selector = null;
+        }
+        elem.addEventListener(type,function(e){
+            var target;
+            if(selector) {
+                  target = e.target;
+                  if(target.matches(selector)) {
+                        fn.call(target,e)
+                  }
+            }else {
+                  return e;
+            }
+        })
+      }
+      
+使用代理
+
+      var div1  = document.getElementById('#div1');
+      bindEvent(div1,'click','a',function(e){...})
+      
+> div1：外层，a：目标的a标签
+
+不使用代理
+
+      var div1  = document.getElementById('#div1');
+      bindEvent(div1,'click',function(e){...})
+
+
+
+
+
+
+
+
+
 
 
 
