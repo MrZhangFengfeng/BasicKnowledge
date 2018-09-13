@@ -35,11 +35,6 @@ JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构�
     map.has("title") // true
     map.get("title") // "Author"
     
-上面代码在新建 Map 实例时，就指定了两个键 name 和 title。
-
-- 如果对同一个键多次赋值，后面的值将覆盖前面的值。
-- 如果读取一个未知的键，则返回 undefined。
-
 - - -
 ### 只有对同一个对象的引用，Map 结构才将其视为同一个键。
 
